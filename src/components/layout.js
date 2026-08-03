@@ -1,35 +1,31 @@
 /**
- * Danh sách cấu hình 15 phân hệ ứng dụng RoomMate
+ * Danh sách cấu hình 11 đường dẫn menu chính ứng dụng RoomMate
  */
 const NAV_ITEMS = [
-  { page: 'dashboard', label: 'Dashboard', icon: 'bi-speedometer2' },
-  { page: 'rooms', label: 'Danh sách phòng', icon: 'bi-door-open' },
-  { page: 'room-form', label: 'Form phòng', icon: 'bi-house-add' },
-  { page: 'tenants', label: 'Danh sách người thuê', icon: 'bi-people' },
-  { page: 'tenant-form', label: 'Form người thuê', icon: 'bi-person-plus' },
-  { page: 'contracts', label: 'Danh sách hợp đồng', icon: 'bi-file-earmark-text' },
-  { page: 'contract-form', label: 'Form hợp đồng', icon: 'bi-file-earmark-plus' },
-  { page: 'utilities', label: 'Ghi chỉ số điện nước', icon: 'bi-lightning-charge' },
-  { page: 'services', label: 'Danh sách dịch vụ', icon: 'bi-gear-wide-connected' },
-  { page: 'invoices', label: 'Danh sách hóa đơn', icon: 'bi-receipt' },
-  { page: 'invoice-detail', label: 'Chi tiết hóa đơn', icon: 'bi-receipt-cutoff' },
-  { page: 'payments', label: 'Thanh toán', icon: 'bi-credit-card' },
-  { page: 'debts', label: 'Công nợ', icon: 'bi-exclamation-triangle' },
-  { page: 'reports', label: 'Báo cáo', icon: 'bi-bar-chart-line' },
-  { page: 'settings', label: 'Cài đặt & Sao lưu', icon: 'bi-sliders' }
+  { hash: '#/dashboard', label: 'Dashboard', icon: 'bi-speedometer2' },
+  { hash: '#/rooms', label: 'Danh sách phòng', icon: 'bi-door-open' },
+  { hash: '#/tenants', label: 'Danh sách người thuê', icon: 'bi-people' },
+  { hash: '#/contracts', label: 'Danh sách hợp đồng', icon: 'bi-file-earmark-text' },
+  { hash: '#/meters', label: 'Ghi chỉ số điện nước', icon: 'bi-lightning-charge' },
+  { hash: '#/services', label: 'Danh sách dịch vụ', icon: 'bi-gear-wide-connected' },
+  { hash: '#/invoices', label: 'Danh sách hóa đơn', icon: 'bi-receipt' },
+  { hash: '#/payments', label: 'Thanh toán', icon: 'bi-credit-card' },
+  { hash: '#/debts', label: 'Công nợ', icon: 'bi-exclamation-triangle' },
+  { hash: '#/reports', label: 'Báo cáo', icon: 'bi-bar-chart-line' },
+  { hash: '#/settings', label: 'Cài đặt & Sao lưu', icon: 'bi-sliders' }
 ];
 
 /**
- * Render Khung Layout chính gồm Sidebar, Header, Overlay và Main Content Area
+ * Render Khung Layout chính bao gồm Sidebar, Header và Main Content Container
  * @param {HTMLElement} containerElement
  */
 export function renderLayout(containerElement) {
-  const sidebarItemsHtml = NAV_ITEMS.map((item, index) => `
+  const sidebarItemsHtml = NAV_ITEMS.map((item) => `
     <a 
-      href="#${item.page}" 
-      class="list-group-item list-group-item-action ${index === 0 ? 'active' : ''}" 
-      data-page="${item.page}"
-      data-testid="nav-${item.page}"
+      href="${item.hash}" 
+      class="list-group-item list-group-item-action" 
+      data-hash="${item.hash}"
+      data-testid="nav-${item.hash.replace('#/', '')}"
     >
       <i class="bi ${item.icon} me-2"></i>${item.label}
     </a>
@@ -66,7 +62,7 @@ export function renderLayout(containerElement) {
 
       <!-- Main Content Container -->
       <main id="main-content" data-testid="main-content">
-        <!-- Nội dung động của các màn hình sẽ render tại đây -->
+        <!-- Nội dung sẽ được Router render vào đây -->
       </main>
     </div>
   `;
@@ -75,7 +71,7 @@ export function renderLayout(containerElement) {
 }
 
 /**
- * Đăng ký sự kiện toggle cho Sidebar trên giao diện Responsive
+ * Đăng ký các sự kiện tương tác của Layout (Toggle Mobile Sidebar)
  */
 function setupLayoutEvents() {
   const toggleBtn = document.getElementById('sidebar-toggle');
@@ -90,26 +86,33 @@ function setupLayoutEvents() {
 }
 
 /**
- * Cập nhật trạng thái Active của Menu Sidebar & Tiêu đề trang
- * @param {string} currentPage
+ * Cập nhật trạng thái Active trên Sidebar Menu & Tiêu đề trang theo Hash hiện tại
+ * @param {string} currentHash - Hash URL hiện tại (Ví dụ: '#/rooms')
  */
-export function updateActiveNav(currentPage) {
-  const navLinks = document.querySelectorAll('#sidebar-wrapper [data-page]');
+export function updateActiveNav(currentHash) {
+  const navLinks = document.querySelectorAll('#sidebar-wrapper [data-hash]');
   const pageTitle = document.getElementById('page-title');
 
+  let matchedItem = null;
+
   navLinks.forEach((link) => {
-    const page = link.getAttribute('data-page');
-    if (page === currentPage) {
+    const hash = link.getAttribute('data-hash');
+    if (hash === currentHash) {
       link.classList.add('active');
-      const targetItem = NAV_ITEMS.find((item) => item.page === page);
-      if (pageTitle && targetItem) {
-        pageTitle.textContent = targetItem.label;
-      }
+      matchedItem = NAV_ITEMS.find((item) => item.hash === hash);
     } else {
       link.classList.remove('active');
     }
   });
 
-  // Tự động đóng Sidebar trên Mobile khi bấm chuyển trang
+  if (pageTitle) {
+    if (matchedItem) {
+      pageTitle.textContent = matchedItem.label;
+    } else if (currentHash === '404') {
+      pageTitle.textContent = '404 Not Found';
+    }
+  }
+
+  // Tự động đóng Sidebar khi chuyển trang trên thiết bị di động
   document.body.classList.remove('sb-expanded');
 }

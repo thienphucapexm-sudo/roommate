@@ -121,7 +121,7 @@
 }
 
 /* Modal Form Styles */
-.modal-backdrop {
+.room-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -131,19 +131,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1100;
 }
 
-.modal-content {
+.room-modal-content {
   background-color: #fff;
   border-radius: 8px;
   width: 100%;
   max-width: 500px;
+  max-height: calc(100vh - 2rem);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
-.modal-header {
+.room-modal-header {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid #e5e7eb;
   display: flex;
@@ -151,13 +153,13 @@
   align-items: center;
 }
 
-.modal-header h3 {
+.room-modal-header h3 {
   margin: 0;
   font-size: 1.125rem;
   color: #111827;
 }
 
-.modal-close-btn {
+.room-modal-close-btn {
   background: none;
   border: none;
   font-size: 1.25rem;
@@ -165,7 +167,7 @@
   color: #9ca3af;
 }
 
-.modal-close-btn:hover {
+.room-modal-close-btn:hover {
   color: #374151;
 }
 
@@ -176,40 +178,42 @@
   gap: 1rem;
 }
 
-.form-group {
+.room-form .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
 }
 
-.form-group label {
+.room-form .form-group label {
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
 }
 
-.form-control {
+.room-form .form-control {
   padding: 0.5rem 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 0.875rem;
 }
 
-.form-control.has-error {
+.room-form .form-control.has-error {
   border-color: #ef4444;
 }
 
-.error-message {
+.room-form .error-message {
   font-size: 0.75rem;
   color: #ef4444;
   min-height: 1rem;
 }
 
-.form-actions {
+.room-form .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 0.5rem;
+  padding-top: 1rem;
+  background-color: #fff;
 }
 
 /* Button UI */

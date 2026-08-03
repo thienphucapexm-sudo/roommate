@@ -11,14 +11,14 @@ export class RoomFormComponent {
     const isEdit = Boolean(room && room.id);
     
     const backdrop = document.createElement('div');
-    backdrop.className = 'modal-backdrop';
+    backdrop.className = 'room-modal-backdrop';
     backdrop.setAttribute('data-testid', 'room-form-modal');
 
     backdrop.innerHTML = `
-      <div class="modal-content">
-        <div class="modal-header">
+      <div class="room-modal-content">
+        <div class="room-modal-header">
           <h3>${isEdit ? 'Cập Nhật Thông Tin Phòng' : 'Thêm Phòng Mới'}</h3>
-          <button type="button" class="modal-close-btn" data-testid="btn-close-modal">&times;</button>
+          <button type="button" class="room-modal-close-btn" data-testid="btn-close-modal">&times;</button>
         </div>
         <form class="room-form" id="room-form" data-testid="room-form">
           <div class="form-group">

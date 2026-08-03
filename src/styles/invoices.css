@@ -1,0 +1,303 @@
+/* Styling chung trang Quản lý Hóa đơn */
+.invoice-page-container {
+  padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #2d3748;
+}
+
+.invoice-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.invoice-header-section h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1a202c;
+}
+
+.invoice-top-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Khối Bộ Lọc */
+.invoice-filter-card {
+  display: flex;
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.invoice-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.invoice-filter-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #4a5568;
+}
+
+.invoice-input-sm {
+  width: 100px;
+}
+
+/* Thống Kê Tổng Số Tiền */
+.invoice-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.invoice-stat-card {
+  background-color: #ffffff;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-title {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+/* Bảng Danh Sách Hóa Đơn */
+.invoice-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.invoice-table th {
+  background-color: #f7fafc;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #edf2f7;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.invoice-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: middle;
+}
+
+/* Badges & Tags */
+.invoice-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-success { background-color: #c6f6d5; color: #22543d; }
+.badge-warning { background-color: #fefcbf; color: #744210; }
+.badge-danger { background-color: #fed7d7; color: #742a2a; }
+.badge-info { background-color: #e2e8f0; color: #2d3748; }
+.badge-dark { background-color: #edf2f7; color: #a0aec0; text-decoration: line-through; }
+
+.type-tag {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+.type-finalized { background-color: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; }
+.type-draft { background-color: #fffaf0; color: #dd6b20; border: 1px solid #feebc8; }
+
+.invoice-empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #a0aec0;
+  background: #ffffff;
+}
+
+/* Nút bấm */
+.invoice-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.invoice-btn-primary { background-color: #3182ce; color: #ffffff; }
+.invoice-btn-primary:hover { background-color: #2b6cb0; }
+
+.invoice-btn-secondary { background-color: #edf2f7; color: #4a5568; }
+.invoice-btn-secondary:hover { background-color: #e2e8f0; }
+
+.invoice-btn-success { background-color: #38a169; color: #ffffff; }
+.invoice-btn-success:hover { background-color: #2f855a; }
+
+.invoice-btn-danger { background-color: #e53e3e; color: #ffffff; }
+.invoice-btn-danger:hover { background-color: #c53030; }
+
+.invoice-btn-edit { background-color: #feebc8; color: #c05621; }
+.invoice-btn-edit:hover { background-color: #fbd38d; }
+
+.invoice-btn-sm { padding: 0.25rem 0.5rem; font-size: 0.8rem; }
+.invoice-action-buttons { display: flex; gap: 0.35rem; }
+
+/* Modal & Form */
+.invoice-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.invoice-modal-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.invoice-modal-lg { max-width: 800px; }
+
+.invoice-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.invoice-modal-header h3 { margin: 0; font-size: 1.2rem; }
+.invoice-header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+.invoice-modal-close {
+  background: none; border: none; font-size: 1.5rem; color: #a0aec0; cursor: pointer;
+}
+
+.invoice-modal-body { padding: 1.5rem; }
+
+.invoice-form-row { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.invoice-form-group { flex: 1; display: flex; flex-direction: column; }
+.invoice-form-group label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; color: #4a5568; }
+
+.invoice-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.invoice-section-title {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.95rem; font-weight: 700; color: #2d3748;
+  margin: 1.25rem 0 0.75rem 0; padding-bottom: 0.35rem; border-bottom: 2px solid #edf2f7;
+}
+
+.invoice-items-form-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.invoice-item-row-form {
+  display: grid; grid-template-columns: 3fr 2fr 1fr 40px; gap: 0.5rem; align-items: center;
+}
+
+.invoice-btn-icon {
+  background: #fed7d7; color: #9b2c2c; border: none; border-radius: 6px;
+  height: 36px; font-size: 1.2rem; cursor: pointer;
+}
+
+.invoice-error-box {
+  background-color: #fff5f5; border: 1px solid #feb2b2; color: #c53030;
+  padding: 0.75rem; border-radius: 6px; font-size: 0.85rem; margin-top: 1rem;
+}
+
+.invoice-form-actions, .invoice-modal-footer {
+  display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;
+  padding: 1rem 1.5rem; border-top: 1px solid #edf2f7; background-color: #f7fafc;
+}
+
+/* Chi tiết in hóa đơn */
+.invoice-printable-wrapper { padding: 1.5rem; }
+.invoice-print-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.invoice-brand h2 { margin: 0; font-size: 1.2rem; color: #2b6cb0; }
+.invoice-brand p { margin: 0.2rem 0 0 0; font-size: 0.85rem; color: #718096; }
+.invoice-meta-top { font-size: 0.85rem; text-align: right; color: #4a5568; }
+
+.invoice-divider { border: 0; border-top: 1px dashed #cbd5e0; margin: 1rem 0; }
+
+.invoice-info-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1.25rem; font-size: 0.9rem;
+}
+
+.invoice-items-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.85rem;
+}
+
+.invoice-items-table th, .invoice-items-table td {
+  padding: 0.6rem; border-bottom: 1px solid #e2e8f0;
+}
+
+.invoice-items-table th { background-color: #edf2f7; }
+
+.invoice-summary-block {
+  margin-left: auto; width: 280px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.4rem;
+}
+
+.summary-row { display: flex; justify-content: space-between; }
+.summary-row-total { border-top: 2px solid #2d3748; padding-top: 0.4rem; font-size: 1.05rem; }
+.summary-row-debt { border-top: 1px dashed #cbd5e0; padding-top: 0.3rem; }
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-primary { color: #3182ce; }
+.text-success { color: #38a169; }
+.text-danger { color: #e53e3e; }
+.font-weight-bold { font-weight: 700; }
+
+/* CSS Hỗ Trợ In Bằng window.print() */
+@media print {
+  body * { visibility: hidden; }
+  .no-print { display: none !important; }
+  .invoice-printable-area, .invoice-printable-area * { visibility: visible; }
+  .invoice-printable-area {
+    position: absolute; left: 0; top: 0; width: 100%;
+    box-shadow: none !important; max-width: 100% !important; padding: 0 !important;
+  }
+}

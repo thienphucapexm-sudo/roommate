@@ -1,60 +1,76 @@
-import './style.css'
-import javascriptLogo from './assets/javascript.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { setupCounter } from './counter.js'
+import './styles/main.css';
+import { renderLayout, updateActiveNav } from './components/layout.js';
 
-document.querySelector('#app').innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${javascriptLogo}" class="framework" alt="JavaScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.js</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+/**
+ * Màn hình Mặc định (Dashboard)
+ * @param {HTMLElement} container
+ */
+function renderDashboardPage(container) {
+  container.innerHTML = `
+    <div class="container-fluid" data-testid="dashboard-page">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h3 class="card-title text-primary mb-3">Dashboard</h3>
+          <p class="card-text text-muted">Chào mừng bạn đến với hệ thống quản lý nhà trọ RoomMate.</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
-<div class="ticks"></div>
+/**
+ * Màn hình Placeholders cho các phân hệ khác (khi chưa phát triển chi tiết)
+ * @param {HTMLElement} container
+ * @param {string} pageKey
+ */
+function renderPlaceholderPage(container, pageKey) {
+  container.innerHTML = `
+    <div class="container-fluid" data-testid="page-${pageKey}">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="card-title text-capitalize mb-2">${pageKey.replace('-', ' ')}</h4>
+          <p class="text-muted m-0">Nội dung màn hình đang được phát triển...</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-          <img class="button-icon" src="${javascriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+/**
+ * Bộ điều hướng Hash Router đơn giản
+ */
+function handleRouting() {
+  const mainContent = document.getElementById('main-content');
+  if (!mainContent) return;
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+  // Lấy tên route từ hash (Mặc định là 'dashboard')
+  const hash = window.location.hash.replace('#', '') || 'dashboard';
 
-setupCounter(document.querySelector('#counter'))
+  updateActiveNav(hash);
+
+  if (hash === 'dashboard') {
+    renderDashboardPage(mainContent);
+  } else {
+    renderPlaceholderPage(mainContent, hash);
+  }
+}
+
+/**
+ * Khởi chạy ứng dụng
+ */
+function initApp() {
+  const appRoot = document.getElementById('app');
+  if (!appRoot) return;
+
+  // 1. Render bộ khung Layout
+  renderLayout(appRoot);
+
+  // 2. Lắng nghe sự kiện đổi Hash URL
+  window.addEventListener('hashchange', handleRouting);
+
+  // 3. Tải route lần đầu tiên
+  handleRouting();
+}
+
+// Khởi tạo app khi DOM đã sẵn sàng
+document.addEventListener('DOMContentLoaded', initApp);

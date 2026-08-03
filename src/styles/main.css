@@ -1,0 +1,107 @@
+/* Layout variables */
+:root {
+  --sidebar-width: 260px;
+  --header-height: 60px;
+  --primary-color: #0d6efd;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Sidebar Styling */
+#sidebar-wrapper {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: margin-left 0.25s ease-in-out;
+  background-color: #212529;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 1rem 1.25rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar-wrapper .list-group-item {
+  border: none;
+  border-radius: 0;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255, 255, 255, 0.75);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+#sidebar-wrapper .list-group-item.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Page Content Wrapper */
+#page-content-wrapper {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.25s ease-in-out;
+}
+
+/* Top Navigation Bar */
+.top-navbar {
+  height: var(--header-height);
+  background-color: #fff;
+  border-bottom: 1px solid #dee2e6;
+  padding: 0 1.5rem;
+}
+
+/* Main Content Area */
+#main-content {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 991.98px) {
+  #sidebar-wrapper {
+    margin-left: calc(-1 * var(--sidebar-width));
+  }
+
+  #page-content-wrapper {
+    margin-left: 0;
+  }
+
+  body.sb-expanded #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  body.sb-expanded #sidebar-overlay {
+    display: block;
+  }
+}
+
+/* Mobile Overlay background */
+#sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

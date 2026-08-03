@@ -1,0 +1,355 @@
+/* Container Trang Quản Lý Chỉ Số */
+.meter-page-container {
+  padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #2d3748;
+}
+
+.meter-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.meter-header-section h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1a202c;
+}
+
+/* Thẻ Bộ Lọc */
+.meter-filter-card {
+  display: flex;
+  gap: 1.5rem;
+  background-color: #ffffff;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meter-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meter-filter-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+/* Danh Sách Phòng Chưa Ghi Số */
+.meter-unrecorded-card {
+  background-color: #fffaf0;
+  border: 1px solid #feebc8;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.meter-unrecorded-header {
+  font-size: 0.95rem;
+  color: #c05621;
+  margin-bottom: 0.75rem;
+}
+
+.meter-unrecorded-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.meter-unrecorded-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #fbd38d;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #7b341e;
+}
+
+.meter-chip-action-btn {
+  background-color: #dd6b20;
+  color: #ffffff;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.meter-chip-action-btn:hover {
+  background-color: #c05621;
+}
+
+/* Bảng Dữ Liệu */
+.meter-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.meter-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.meter-table th {
+  background-color: #f7fafc;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #edf2f7;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.meter-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #edf2f7;
+  vertical-align: middle;
+}
+
+.meter-row-warning {
+  background-color: #fffaf0;
+}
+
+.meter-index-badge {
+  background-color: #edf2f7;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.meter-text-muted {
+  font-size: 0.75rem;
+  color: #e53e3e;
+  margin-top: 0.2rem;
+}
+
+.meter-warning-tag {
+  display: inline-block;
+  background-color: #feebc8;
+  color: #c05621;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.meter-ok-tag {
+  color: #38a169;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.meter-empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #a0aec0;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+/* Buttons */
+.meter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.meter-btn-primary {
+  background-color: #3182ce;
+  color: #ffffff;
+}
+
+.meter-btn-primary:hover {
+  background-color: #2b6cb0;
+}
+
+.meter-btn-secondary {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.meter-btn-secondary:hover {
+  background-color: #cbd5e0;
+}
+
+.meter-btn-danger {
+  background-color: #e53e3e;
+  color: #ffffff;
+}
+
+.meter-btn-danger:hover {
+  background-color: #c53030;
+}
+
+.meter-btn-edit {
+  background-color: #edf2f7;
+  color: #2b6cb0;
+}
+
+.meter-btn-edit:hover {
+  background-color: #e2e8f0;
+}
+
+.meter-btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.meter-action-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* Form & Modal */
+.meter-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.meter-modal-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.meter-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.meter-modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #2d3748;
+}
+
+.meter-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #a0aec0;
+  cursor: pointer;
+}
+
+.meter-modal-body {
+  padding: 1.5rem;
+}
+
+.meter-form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.meter-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.meter-form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #4a5568;
+}
+
+.meter-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.meter-input:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+.meter-readonly-highlight {
+  background-color: #f7fafc;
+  font-weight: 600;
+  color: #2b6cb0;
+}
+
+.meter-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 1.25rem 0 0.75rem 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid #edf2f7;
+}
+
+.required {
+  color: #e53e3e;
+}
+
+.meter-error-box {
+  background-color: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.meter-warning-box {
+  background-color: #fffaf0;
+  border: 1px solid #fbd38d;
+  color: #c05621;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.meter-warning-box ul {
+  margin: 0.35rem 0 0 1.2rem;
+  padding: 0;
+}
+
+.meter-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}

@@ -32,3 +32,8 @@ export function showConfirmDialog({ title, message, onConfirm }) {
 
   bsModal.show();
 }
+
+// Giữ API đối tượng cho các trang đã dùng ConfirmDialog.show(...).
+export const ConfirmDialog = {
+  show: showConfirmDialog,
+};

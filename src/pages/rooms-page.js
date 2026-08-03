@@ -281,3 +281,8 @@ export class RoomsPage {
     }
   }
 }
+
+/** Entry point for the hash router. */
+export function renderRoomsPage(container) {
+  container.appendChild(new RoomsPage().render());
+}

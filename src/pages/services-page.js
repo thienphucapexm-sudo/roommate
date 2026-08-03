@@ -219,3 +219,8 @@ export class ServicesPage {
     });
   }
 }
+
+/** Entry point for the hash router. */
+export function renderServicesPage(container) {
+  container.appendChild(new ServicesPage().render());
+}

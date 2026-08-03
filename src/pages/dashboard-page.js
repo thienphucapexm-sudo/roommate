@@ -1,6 +1,7 @@
 import { reportService } from '../services/report-service.js';
 import { createStatCardHtml } from '../components/stat-card.js';
 import { createAlertListHtml } from '../components/alert-list.js';
+import Chart from 'chart.js/auto';
 
 // Lưu trữ instance của Chart.js để hủy (destroy) trước khi vẽ mới
 let revenueChartInstance = null;
@@ -190,12 +191,6 @@ export function renderDashboardPage(container) {
  * Hàm khởi tạo và quản lý biểu đồ Chart.js
  */
 function initCharts(overview, revenueChartData, container) {
-  // Kiểm tra thư viện Chart.js đã nạp chưa
-  if (typeof window.Chart === 'undefined') {
-    console.warn('Thư viện Chart.js chưa được tải.');
-    return;
-  }
-
   // --- 1. Vẽ Biểu đồ Trạng thái Phòng (Doughnut Chart) ---
   const roomStatusCanvas = container.querySelector('#room-status-chart');
   const roomStatusEmpty = container.querySelector('#room-status-empty');
@@ -218,7 +213,7 @@ function initCharts(overview, revenueChartData, container) {
     roomStatusCanvas.classList.remove('hidden');
     roomStatusEmpty.classList.add('hidden');
 
-    roomStatusChartInstance = new window.Chart(roomStatusCanvas, {
+    roomStatusChartInstance = new Chart(roomStatusCanvas, {
       type: 'doughnut',
       data: {
         labels: ['Đang thuê', 'Phòng trống', 'Bảo trì/Sửa chữa'],
@@ -272,7 +267,7 @@ function initCharts(overview, revenueChartData, container) {
     revenueCanvas.classList.remove('hidden');
     revenueEmpty.classList.add('hidden');
 
-    revenueChartInstance = new window.Chart(revenueCanvas, {
+    revenueChartInstance = new Chart(revenueCanvas, {
       type: 'bar',
       data: {
         labels,

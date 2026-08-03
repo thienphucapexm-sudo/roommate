@@ -41,3 +41,10 @@ export function showToast(message, type = 'info') {
     toastEl.remove();
   });
 }
+
+// Tương thích với các trang gọi Toast.show(message, type).
+export const Toast = {
+  show(message, type = 'info') {
+    showToast(message, type === 'error' ? 'danger' : type);
+  },
+};

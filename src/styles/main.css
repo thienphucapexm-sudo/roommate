@@ -37,13 +37,17 @@ body {
   border: none;
   border-radius: 0;
   padding: 0.75rem 1.25rem;
-  color: rgba(255, 255, 255, 0.75);
-  transition: background-color 0.15s, color 0.15s;
+  color: #344054;
+  background-color: #eef3f8;
+  border-bottom: 1px solid #dbe4ee;
+  font-weight: 500;
+  transition: background-color 0.15s, color 0.15s, padding-left 0.15s;
 }
 
 #sidebar-wrapper .list-group-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background-color: #dce9f7;
+  color: #0a58ca;
+  padding-left: 1.45rem;
 }
 
 #sidebar-wrapper .list-group-item.active {

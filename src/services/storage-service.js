@@ -1,6 +1,16 @@
 import { generateUniqueId } from '../utils/id-utils.js';
 import { getCurrentIsoDate } from '../utils/date-utils.js';
 
+const COLLECTION_KEYS = Object.freeze({
+  rooms: 'roommate_rooms',
+  tenants: 'roommate_tenants',
+  contracts: 'roommate_contracts',
+  invoices: 'roommate_invoices',
+  utilityReadings: 'roommate_meter_readings',
+  services: 'roommate_services',
+  payments: 'roommate_payments',
+});
+
 /**
  * Service thao tác dùng chung với LocalStorage cho ứng dụng RoomMate
  */
@@ -222,4 +232,70 @@ export class StorageService {
 
     return true;
   }
+
+  // =========================================================================
+  // BỔ SUNG CÁC HELPER METHOD CHO INSTANCE (Tương thích với ReportService & các service khác)
+  // =========================================================================
+
+  getRooms() {
+    return StorageService.getAll('rooms');
+  }
+
+  getTenants() {
+    return StorageService.getAll('tenants');
+  }
+
+  getContracts() {
+    return StorageService.getAll('contracts');
+  }
+
+  getInvoices() {
+    return StorageService.getAll('invoices');
+  }
+
+  getPayments() {
+    return StorageService.getAll('payments');
+  }
+
+  getServices() {
+    return StorageService.getAll('services');
+  }
+
+  getMeterReadings() {
+    return StorageService.getAll('meter_readings');
+  }
+
+  // Wrapper gọi static method từ instance
+  getAll(key) {
+    return StorageService.getAll(key);
+  }
+
+  // BackupService works with portable collection names, while application
+  // services use the namespaced LocalStorage keys above.
+  getCollection(collectionName) {
+    return StorageService.getAll(COLLECTION_KEYS[collectionName] || collectionName);
+  }
+
+  setCollection(collectionName, items) {
+    return StorageService.replaceAll(COLLECTION_KEYS[collectionName] || collectionName, items);
+  }
+
+  getById(key, id) {
+    return StorageService.getById(key, id);
+  }
+
+  create(key, item) {
+    return StorageService.create(key, item);
+  }
+
+  update(key, id, changes) {
+    return StorageService.update(key, id, changes);
+  }
+
+  remove(key, id) {
+    return StorageService.remove(key, id);
+  }
 }
+
+// Export instance dùng chung
+export const storageService = new StorageService();

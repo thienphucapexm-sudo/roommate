@@ -1,4 +1,14 @@
 import './styles/main.css';
+import './styles/dashboard.css';
+import './styles/room.css';
+import './styles/tenants.css';
+import './styles/contracts.css';
+import './styles/meter-readings.css';
+import './styles/invoices.css';
+import './styles/payments.css';
+import './styles/debts.css';
+import './styles/reports.css';
+import './styles/settings.css';
 import { renderLayout, updateActiveNav } from './components/layout.js';
 import { Router } from './router.js';
 

@@ -42,3 +42,11 @@ export class SeedService {
     console.log('[SeedService] Đã khôi phục dữ liệu mẫu thành công.');
   }
 }
+
+// Các trang giao diện sử dụng service theo dạng instance.
+export const seedService = {
+  seedIfEmpty: () => SeedService.seedIfEmpty(),
+  resetToSeedData: () => SeedService.resetToSeedData(),
+  initSeedData: () => SeedService.resetToSeedData(),
+  getSeedData: () => SEED_DATA,
+};

@@ -142,7 +142,7 @@
 .btn-danger-link:hover { text-decoration: underline; }
 
 /* Modal & Form */
-.modal {
+.payment-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -155,7 +155,7 @@
   z-index: 1000;
 }
 
-.modal-content {
+.payment-modal .modal-content {
   background: white;
   border-radius: 12px;
   width: 100%;

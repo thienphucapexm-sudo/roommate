@@ -6,7 +6,7 @@ const routes = {
   '#/rooms': () => import('./pages/rooms-page.js'),
   '#/tenants': () => import('./pages/tenants-page.js'),
   '#/contracts': () => import('./pages/contracts-page.js'),
-  '#/meters': () => import('./pages/meters-page.js'),
+  '#/meters': () => import('./pages/meter-readings-page.js'),
   '#/services': () => import('./pages/services-page.js'),
   '#/invoices': () => import('./pages/invoices-page.js'),
   '#/payments': () => import('./pages/payments-page.js'),
@@ -56,8 +56,8 @@ export class Router {
   init() {
     window.addEventListener('hashchange', () => this.handleRoute());
     
-    // Nếu chưa có Hash URL, tự động điều hướng về #/dashboard
-    if (!window.location.hash || window.location.hash === '#/') {
+    // Nếu chưa có Hash URL hoặc là #/, tự động điều hướng về #/dashboard
+    if (!window.location.hash || window.location.hash === '#/' || window.location.hash === '#') {
       window.location.hash = '#/dashboard';
       return;
     }
@@ -83,9 +83,28 @@ export class Router {
     try {
       // Dynamic import module trang tương ứng
       const module = await routeLoader();
-      if (module && typeof module.renderPage === 'function') {
-        module.renderPage(this.contentElement);
+
+      // Linh hoạt lấy hàm render (renderPage hoặc render[PageName]Page)
+      const renderFn =
+        module.renderPage ||
+        module.renderDashboardPage ||
+        module.renderRoomsPage ||
+        module.renderTenantsPage ||
+        module.renderContractsPage ||
+        module.renderMeterReadingsPage ||
+        module.renderServicesPage ||
+        module.renderInvoicesPage ||
+        module.renderPaymentsPage ||
+        module.renderDebtsPage ||
+        module.renderReportsPage ||
+        module.renderSettingsPage ||
+        module.default;
+
+      if (typeof renderFn === 'function') {
+        this.contentElement.innerHTML = ''; // Dọn dẹp container trước khi render mới
+        renderFn(this.contentElement);
       } else {
+        console.error(`Không tìm thấy hàm render hợp lệ trong module [${currentHash}]`);
         renderNotFoundPage(this.contentElement);
       }
 

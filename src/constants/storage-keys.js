@@ -3,6 +3,8 @@
  */
 export const STORAGE_KEYS = Object.freeze({
   SERVICES: 'roommate_services',
+  // Alias used by ServiceConfigService; both names intentionally share data.
+  SERVICE_CONFIGS: 'roommate_services',
   ROOMS: 'roommate_rooms',
   TENANTS: 'roommate_tenants',
   CONTRACTS: 'roommate_contracts',

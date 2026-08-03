@@ -349,3 +349,8 @@ export class MeterReadingsPage {
     }
   }
 }
+
+/** Entry point for the hash router. */
+export function renderMeterReadingsPage(container) {
+  container.appendChild(new MeterReadingsPage().render());
+}

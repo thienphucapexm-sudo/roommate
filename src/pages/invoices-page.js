@@ -1,6 +1,7 @@
 import { InvoiceService } from '../services/invoice-service.js';
 import { InvoiceDetailComponent } from '../components/invoice-detail.js';
 import { InvoiceFormComponent } from '../components/invoice-form.js';
+import { storageService } from '../services/storage-service.js';
 
 export class InvoicesPage {
   /**
@@ -386,4 +387,39 @@ export class InvoicesPage {
       }
     }
   }
+}
+
+/**
+ * Entry point used by the hash router.
+ * The detailed invoice workflow is represented by InvoicesPage; until its
+ * repository dependencies are wired into the application composition root,
+ * render a safe, read-only overview from the shared storage service.
+ */
+export function renderInvoicesPage(container) {
+  const invoices = storageService.getInvoices() || [];
+  const rows = invoices.length
+    ? invoices.map((invoice) => `
+      <tr>
+        <td>${invoice.id ?? ''}</td>
+        <td>${invoice.month ?? ''}</td>
+        <td>${invoice.roomId ?? ''}</td>
+        <td>${Number(invoice.total || 0).toLocaleString('vi-VN')} đ</td>
+        <td>${invoice.status ?? 'Chưa thanh toán'}</td>
+      </tr>
+    `).join('')
+    : '<tr><td colspan="5">Chưa có hóa đơn.</td></tr>';
+
+  container.innerHTML = `
+    <section class="invoice-page-container" data-testid="invoices-page">
+      <div class="invoice-header-section">
+        <h2>Quản lý hóa đơn</h2>
+      </div>
+      <div class="invoice-table-wrapper">
+        <table class="invoice-table" data-testid="invoices-table">
+          <thead><tr><th>Mã hóa đơn</th><th>Tháng</th><th>Phòng</th><th>Tổng tiền</th><th>Trạng thái</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
 }

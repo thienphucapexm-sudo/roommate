@@ -268,3 +268,8 @@ export class ContractsPage {
     });
   }
 }
+
+/** Entry point for the hash router. */
+export function renderContractsPage(container) {
+  container.appendChild(new ContractsPage().render());
+}

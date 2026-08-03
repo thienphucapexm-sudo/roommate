@@ -300,3 +300,8 @@ export class TenantsPage {
     }
   }
 }
+
+/** Entry point for the hash router. */
+export function renderTenantsPage(container) {
+  container.appendChild(new TenantsPage().render());
+}

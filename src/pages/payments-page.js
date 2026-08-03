@@ -51,7 +51,7 @@ export function renderPaymentsPage(container) {
       </div>
 
       <!-- Khung hiển thị Form tạo giao dịch (Modal) -->
-      <div id="payment-modal" class="modal hidden" data-testid="payment-modal">
+      <div id="payment-modal" class="payment-modal hidden" data-testid="payment-modal">
         <div class="modal-content">
           <div id="modal-form-container"></div>
         </div>
